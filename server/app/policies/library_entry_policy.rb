@@ -23,7 +23,7 @@ class LibraryEntryPolicy < ApplicationPolicy
       private, user_id = t[:private], t[:user_id]
       # RAILS-5: This can be replaced with a simple ActiveRecord.or
       # (private == true && user == owner) || private == false
-      scope.where(
+      return scope.where(
         private.eq(false).or(
           user_id.eq(user.id).and(private.eq(true))
         )
